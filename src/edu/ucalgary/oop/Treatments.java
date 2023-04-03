@@ -5,11 +5,15 @@ public class Treatments {
     private int taskID;
     private int startHour;
 
-//    public Treatments(int animalID, int taskID, int startHour) {
-//        this.animalID = animalID;
-//        this.taskID = taskID;
-//        this.startHour = startHour;
-//    }
+    public Treatments(int animalID, int taskID, int startHour) {
+        this.animalID = animalID;
+        this.taskID = taskID;
+        this.startHour = startHour;
+    }
+
+    public Treatments() {
+
+    }
 
     public int getAnimalID() {
         return animalID;

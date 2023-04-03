@@ -11,6 +11,10 @@ public class Animal {
         this.animalSpecies = animalSpecies;
     }
 
+    public Animal() {
+
+    }
+
     public int getAnimalID() {
         return animalID;
     }
@@ -21,5 +25,17 @@ public class Animal {
 
     public Species getAnimalSpecies() {
         return animalSpecies;
+    }
+
+    public void setAnimalID(int animalID) {
+        this.animalID = animalID;
+    }
+
+    public void setAnimalNickname(String animalNickname) {
+        this.animalNickname = animalNickname;
+    }
+
+    public void setAnimalSpecies(Species animalSpecies) {
+        this.animalSpecies = animalSpecies;
     }
 }
