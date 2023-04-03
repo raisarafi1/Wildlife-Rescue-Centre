@@ -2,6 +2,8 @@ package edu.ucalgary.oop;
 
 import javax.xml.crypto.Data;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.*;
 
 public class DatabaseConnection {
     private Connection dbConnect;
@@ -15,23 +17,29 @@ public class DatabaseConnection {
         }
     }
 
-    public String selectAnimals() {
-        StringBuffer animals = new StringBuffer();
+    public LinkedList<Treatments> retrieveTreatmentsInfo() {
+        LinkedList<Treatments> treatmentsList = new LinkedList<>();
 
         try {
             Statement statement = dbConnect.createStatement();
-            results = statement.executeQuery("SELECT * FROM animals");
+            results = statement.executeQuery("SELECT * FROM treatments");
 
             while (results.next()) {
-                System.out.println("Animals: " + results.getString("AnimalNickname"));
-                animals.append(results.getString("AnimalNickname"));
-                animals.append('\n');
+                Treatments treatments = new Treatments();
+                String animalID = results.getString("AnimalID");
+                treatments.setAnimalID(Integer.parseInt(animalID));
+                String taskID = results.getString("TaskID");
+                treatments.setTaskID(Integer.parseInt(taskID));
+                String startHour = results.getString("StartHour");
+                treatments.setStartHour(Integer.parseInt(startHour));
+
+                treatmentsList.add(treatments);
             }
             statement.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return animals.toString();
+        return treatmentsList;
     }
 
     public void close() {
@@ -48,9 +56,9 @@ public class DatabaseConnection {
 
         database.createConnection();
 
-        String allAnimals = database.selectAnimals();
-        System.out.println("Here is a list of animal nicknames: ");
-        System.out.println(allAnimals);
+        LinkedList<Treatments> allTreatments = database.retrieveTreatmentsInfo();
+        System.out.println("Here is a list of Treatments: ");
+        System.out.println(allTreatments.toString());
 
         database.close();
     }
