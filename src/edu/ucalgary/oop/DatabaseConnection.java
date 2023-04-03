@@ -34,6 +34,15 @@ public class DatabaseConnection {
         return animals.toString();
     }
 
+    public void close() {
+        try {
+            results.close();
+            dbConnect.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         DatabaseConnection database = new DatabaseConnection();
 
@@ -42,6 +51,8 @@ public class DatabaseConnection {
         String allAnimals = database.selectAnimals();
         System.out.println("Here is a list of animal nicknames: ");
         System.out.println(allAnimals);
+
+        database.close();
     }
 
 }
