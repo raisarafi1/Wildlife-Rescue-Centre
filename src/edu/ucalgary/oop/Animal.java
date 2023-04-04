@@ -38,4 +38,13 @@ public class Animal {
     public void setAnimalSpecies(Species animalSpecies) {
         this.animalSpecies = animalSpecies;
     }
+
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "animalID=" + animalID +
+                ", animalNickname='" + animalNickname + '\'' +
+                ", animalSpecies=" + animalSpecies +
+                '}';
+    }
 }

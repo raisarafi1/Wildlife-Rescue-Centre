@@ -1,6 +1,7 @@
 package edu.ucalgary.oop;
 
 public class Treatments {
+    private int treatmentID;
     private int animalID;
     private int taskID;
     private int startHour;
@@ -15,6 +16,10 @@ public class Treatments {
 
     }
 
+    public int getTreatmentID() {
+        return treatmentID;
+    }
+
     public int getAnimalID() {
         return animalID;
     }
@@ -25,6 +30,10 @@ public class Treatments {
 
     public int getStartHour() {
         return startHour;
+    }
+
+    public void setTreatmentID(int treatmentID) {
+        this.treatmentID = treatmentID;
     }
 
     public void setAnimalID(int animalID) {
