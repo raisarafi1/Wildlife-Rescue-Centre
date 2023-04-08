@@ -27,6 +27,7 @@ public class DatabaseConnection {
                 Treatments treatments = new Treatments();
                 String stringTreatmentID = results.getString("TreatmentID");
                 int treatmentID = Integer.parseInt(stringTreatmentID);
+                treatments.setTreatmentID(treatmentID);
                 String animalID = results.getString("AnimalID");
                 treatments.setAnimalID(Integer.parseInt(animalID));
                 String taskID = results.getString("TaskID");
@@ -129,10 +130,11 @@ public class DatabaseConnection {
 
         Scheduler.schedule(allTreatments, allTasks, allAnimals);
 
-        // testing to see if getting animalID 7 prints out the animal with animalID 7
-        // testing to see if getting taskID 3 prints out the task with taskID 3
-//        System.out.println(allAnimals.get(7));
-//        System.out.println(allTasks.get(3));
+        // feeding and cleaning methods are called
+//        Animal.nocturnalFeeding(allAnimals);
+//        Animal.diurnalFeeding(allAnimals);
+//        Animal.crepuscularFeeding(allAnimals);
+//        Animal.cageCleaning(allAnimals);
 
         database.close();
     }
