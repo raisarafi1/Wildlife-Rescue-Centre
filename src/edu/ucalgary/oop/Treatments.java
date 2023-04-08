@@ -50,8 +50,9 @@ public class Treatments {
 
     @Override
     public String toString() {
-        return "Treatment{" +
-                "animalID=" + animalID +
+        return "Treatments{" +
+                "treatmentID=" + treatmentID +
+                ", animalID=" + animalID +
                 ", taskID=" + taskID +
                 ", startHour=" + startHour +
                 '}';
