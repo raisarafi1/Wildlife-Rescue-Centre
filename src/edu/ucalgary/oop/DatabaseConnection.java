@@ -112,22 +112,22 @@ public class DatabaseConnection {
         database.createConnection();
 
         HashMap<Integer, Treatments> allTreatments = database.retrieveTreatmentsInfo();
-//        System.out.println("Treatments Table: ");
-//        System.out.println(allTreatments.toString());
-//
-//        System.out.println();
+        System.out.println("Treatments Table: ");
+        System.out.println(allTreatments.toString());
+
+        System.out.println();
 
         HashMap<Integer, Tasks> allTasks = database.retrieveTasksInfo();
-//        System.out.println("Tasks Table: ");
-//        System.out.println(allTasks.toString());
-//
-//        System.out.println();
+        System.out.println("Tasks Table: ");
+        System.out.println(allTasks.toString());
+
+        System.out.println();
 
         HashMap<Integer, Animal> allAnimals = database.retrieveAnimalInfo();
-//        System.out.println("Animal Table: ");
-//        System.out.println(allAnimals.toString());
+        System.out.println("Animal Table: ");
+        System.out.println(allAnimals.toString());
 
-        Scheduler.schedule(allTreatments, allTasks, allAnimals);
+//        Scheduler.schedule(allTreatments, allTasks, allAnimals);
 
         // testing to see if getting animalID 7 prints out the animal with animalID 7
         // testing to see if getting taskID 3 prints out the task with taskID 3
