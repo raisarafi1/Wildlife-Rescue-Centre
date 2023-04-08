@@ -126,7 +126,6 @@ public class Scheduler {
         ArrayList<Feeding> coyoteFeeding = new ArrayList<>();
         ArrayList<Feeding> porcupineFeeding = new ArrayList<>();
 
-
         for (int i = 1; i <= animals.size(); i++) {
             if (animals.get(i).getAnimalSpecies() == Species.COYOTE) {
                 numOfCoyotes++;

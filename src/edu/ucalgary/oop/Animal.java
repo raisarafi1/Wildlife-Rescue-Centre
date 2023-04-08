@@ -8,7 +8,15 @@ public class Animal {
     private String animalNickname;
     private Species animalSpecies;
 
-    public Animal(int animalID, String animalNickname, Species animalSpecies) {
+    public Animal(int animalID, String animalNickname, Species animalSpecies) throws IllegalArgumentException{
+        /*
+         try {
+            String species = animalSpecies.toString();
+            Species.valueOf(species);
+        } catch(IllegalArgumentException e) {
+            throw new NotSpeciesException("");
+        }
+         */
         this.animalID = animalID;
         this.animalNickname = animalNickname;
         this.animalSpecies = animalSpecies;

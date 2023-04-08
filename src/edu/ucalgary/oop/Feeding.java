@@ -8,7 +8,16 @@ public class Feeding {
     private int startHour;
     private int maxWindow;
 
-    public Feeding(String animalNickname, Species animalSpecies, int prepTime, int feedingTime, int startHour, int maxWindow) {
+    public Feeding(String animalNickname, Species animalSpecies, int prepTime, int feedingTime, int startHour, int maxWindow) throws IllegalArgumentException{
+        if(startHour < 0 || startHour > 23) {
+            throw new IllegalArgumentException("Not a valid starting hour");
+        }
+        if(maxWindow < 1 || maxWindow > 6) {
+            throw new IllegalArgumentException("The maxWindow must be between 1 and 6");
+        }
+        if(prepTime % 5 != 0) {
+            throw new IllegalArgumentException("The prep time must either 0 or some multiple of 5");
+        }
         this.animalNickname = animalNickname;
         this.animalSpecies = animalSpecies;
         this.prepTime = prepTime;

@@ -6,7 +6,11 @@ public class Tasks {
     private int duration;
     private int maxWindow;
 
-    public Tasks(int taskID, String description, int duration, int maxWindow) {
+    public Tasks(int taskID, String description, int duration, int maxWindow) throws IllegalArgumentException {
+        if(duration < 5 || duration > 60) {
+            throw new IllegalArgumentException("The duration is either too short or too long to be completed within 60 minutes");
+        }
+
         this.taskID = taskID;
         this.description = description;
         this.duration = duration;
