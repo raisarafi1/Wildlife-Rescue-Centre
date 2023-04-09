@@ -112,23 +112,50 @@ public class DatabaseConnection {
 
         database.createConnection();
 
-        HashMap<Integer, Treatments> allTreatments = database.retrieveTreatmentsInfo();
-//        System.out.println("Treatments Table: ");
-//        System.out.println(allTreatments.toString());
-//
-//        System.out.println();
-
         HashMap<Integer, Tasks> allTasks = database.retrieveTasksInfo();
+        // TODO @raisa
+
+        // find max task id. increment that by 1 to get the new unused id.
+
+        // use the new id for feeding (or cleaning)
+
+        // increment to get another id for cleaning (or feeding)
+
+        // use these ids bellow to create treatments and add it to the hash map
+
 //        System.out.println("Tasks Table: ");
 //        System.out.println(allTasks.toString());
 //
 //        System.out.println();
 
+        HashMap<Integer, Treatments> allTreatments = database.retrieveTreatmentsInfo();
+
+        int maxTreatmentID = allTreatments
+                .entrySet()
+                .stream()
+                .map(treatment -> treatment.getValue().getTreatmentID())
+                .max(Integer::compareTo)
+                .get();
+
+        int newTreatmentID = maxTreatmentID++;
+
+        allTreatments.put(newTreatmentID, new Treatments(newTreatmentID, 1, 1, 1));
+        newTreatmentID++;
+        allTreatments.put(newTreatmentID, new Treatments(newTreatmentID, 1, 1, 1));
+
+//        System.out.println("Treatments Table: ");
+//        System.out.println(allTreatments.toString());
+//
+//        System.out.println();
+
+
+
         HashMap<Integer, Animal> allAnimals = database.retrieveAnimalInfo();
 //        System.out.println("Animal Table: ");
 //        System.out.println(allAnimals.toString());
 
-        Scheduler.schedule(allTreatments, allTasks, allAnimals);
+//        Scheduler.schedule(allTreatments, allTasks, allAnimals); // TODO @raisa the real schedule
+        Scheduler.schedule2(allTreatments, allTasks, allAnimals);
 
         // feeding and cleaning methods are called
 //        Animal.nocturnalFeeding(allAnimals);
