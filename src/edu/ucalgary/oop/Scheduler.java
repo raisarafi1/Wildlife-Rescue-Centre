@@ -95,6 +95,7 @@ public class Scheduler {
             System.out.println();
         }
     }
+    
     public static StringBuilder getData() {
         return scheduleString;
     }

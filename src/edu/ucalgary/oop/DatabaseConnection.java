@@ -6,6 +6,7 @@
 
 package edu.ucalgary.oop;
 
+
 import java.io.*;
 import java.sql.*;
 import java.util.*;
@@ -22,12 +23,13 @@ public class DatabaseConnection {
 /**
  * Creates a connection to the database
  */
-    public void createConnection() {
+    public Connection createConnection() {
         try {
             dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/ewr", "oop", "password");
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return dbConnect;
     }
 
     /**
@@ -354,4 +356,3 @@ public class DatabaseConnection {
     }
 
 }
-
