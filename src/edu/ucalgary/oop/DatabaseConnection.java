@@ -8,12 +8,13 @@ public class DatabaseConnection {
     private Connection dbConnect;
     private ResultSet results;
 
-    public void createConnection() {
+    public Connection createConnection() {
         try {
             dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/ewr", "oop", "password");
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return dbConnect;
     }
 
     public HashMap<Integer, Treatments> retrieveTreatmentsInfo() {
