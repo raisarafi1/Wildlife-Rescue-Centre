@@ -1,19 +1,28 @@
+/**
+ @authors Raisa Rafi, Rida Khan, Mohamed Ebdalla, Joshua Debele
+ @version 4.3
+ @since 1.0
+ */
+
 package edu.ucalgary.oop;
+
 
 import java.io.*;
 import java.sql.*;
 import java.util.*;
 import java.time.LocalDate;
 
+/**
+The DatabaseConnection class connects the database to the java program and retrieves the information from the
+ database. It then uses the data to create the schedule in the scheduler class.
+ */
 public class DatabaseConnection {
     private Connection dbConnect;
     private ResultSet results;
 
-    /**
-     * Creates a connection to the treatments database
-     *
-     * @return
-     */
+/**
+ * Creates a connection to the database
+ */
     public Connection createConnection() {
         try {
             dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/ewr", "oop", "password");
@@ -24,9 +33,9 @@ public class DatabaseConnection {
     }
 
     /**
-     * Executes an sql query that returns all the treatment tasks from the database
+     * Executes an SQL query that returns all the treatments from the database
      * and stores it into a hashmap called treatmentsList
-     * @return
+     * @return a hashmap of treatments
      */
     public HashMap<Integer, Treatments> retrieveTreatmentsInfo() {
         HashMap<Integer, Treatments> treatmentsList = new HashMap<>();
@@ -57,9 +66,9 @@ public class DatabaseConnection {
     }
 
     /**
-     * Executes an sql query that returns all the animals from the database
+     * Executes an SQL query that returns all the animals from the database
      * and stores it into a hashmap called animalList
-     * @return
+     * @return a hashmap of animals
      */
     public HashMap<Integer, Animal> retrieveAnimalInfo() {
         HashMap<Integer, Animal> animalList = new HashMap<>();
@@ -88,9 +97,9 @@ public class DatabaseConnection {
     }
 
     /**
-     * Executes an sql query that returns all the animals from the database
-     * and stores it into a hashmap called animalList
-     * @return
+     * Executes an SQL query that returns all the tasks from the database
+     * and stores it into a hashmap called tasksList
+     * @return a hashmap of tasks
      */
     public HashMap<Integer, Tasks> retrieveTasksInfo() {
         HashMap<Integer, Tasks> tasksList = new HashMap<>();
@@ -121,7 +130,7 @@ public class DatabaseConnection {
     }
 
     /**
-     * Trys to close the database connection
+     * Try-catch block to close the database
      */
     public void close() {
         try {
@@ -132,22 +141,16 @@ public class DatabaseConnection {
         }
     }
 
+    /**
+     * The main method adds feeding and cleaning cages to the hashmaps to be used when making the schedule
+     * @param args optional command-line argument
+     */
     public static void main(String[] args) {
+        // creating the connection with the database
         DatabaseConnection database = new DatabaseConnection();
-
         database.createConnection();
 
-
-        int foxPrepTime = 5;
-        int foxFeedingTime = 5;
-
-        int raccoonFeedingTime = 5;
-
-        int coyotePrepTime = 10;
-        int coyoteFeedingTime = 5;
-
-        int porcupineFeedingTime = 5;
-
+        // hashmaps of all the information from the database
         HashMap<Integer, Tasks> allTasks = database.retrieveTasksInfo();
         HashMap<Integer, Treatments> allTreatments = database.retrieveTreatmentsInfo();
         HashMap<Integer, Animal> allAnimals = database.retrieveAnimalInfo();
@@ -214,8 +217,8 @@ public class DatabaseConnection {
                 .get();
         int newAnimalID = maxAnimalID + 1;
 
-        // Adding extra animals
 
+        // Adding extra animals to group together all foxes and coyotes
         Animal allFoxes = new Animal(newAnimalID, "All foxes");
         allAnimals.put(allFoxes.getAnimalID(), allFoxes);
 
@@ -225,7 +228,7 @@ public class DatabaseConnection {
 
         System.out.println(allAnimals);
 
-        // Adding extra tasks
+        // Adding extra tasks for feeding and cleaning
         Tasks feedingPorcupines = new Tasks(newTaskID, "Feeding porcupines", 5, 3);
         allTasks.put(feedingPorcupines.getTaskID(), feedingPorcupines);
 
@@ -331,14 +334,15 @@ public class DatabaseConnection {
         System.out.println(allTreatments);
 
 
+        // calling schedule method
         Scheduler.schedule(allTreatments, allTasks, allAnimals);
-
 
         database.close();
 
         LocalDate today = LocalDate.now();
         StringBuilder data = Scheduler.getData();
 
+        // writing out to a file called "schedule.txt"
         try {
             FileWriter file = new FileWriter("schedule.txt");  // Create a FileWriter object
             file.write("Schedule for " + today);   // Write to the file
