@@ -6,7 +6,8 @@ public class Treatments {
     private int taskID;
     private int startHour;
 
-    public Treatments(int animalID, int taskID, int startHour) {
+    public Treatments(int treatmentID, int animalID, int taskID, int startHour) {
+        this.treatmentID = treatmentID;
         this.animalID = animalID;
         this.taskID = taskID;
         this.startHour = startHour;
@@ -50,8 +51,9 @@ public class Treatments {
 
     @Override
     public String toString() {
-        return "Treatment{" +
-                "animalID=" + animalID +
+        return "Treatments{" +
+                "treatmentID=" + treatmentID +
+                ", animalID=" + animalID +
                 ", taskID=" + taskID +
                 ", startHour=" + startHour +
                 '}';
