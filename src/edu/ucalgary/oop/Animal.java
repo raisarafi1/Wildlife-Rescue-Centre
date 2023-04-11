@@ -30,6 +30,11 @@ public class Animal {
         this.animalSpecies = animalSpecies;
     }
 
+    public Animal(int animalID, String animalNickname) {
+        this.animalID = animalID;
+        this.animalNickname = animalNickname;
+    }
+
     public Animal() {
 
     }

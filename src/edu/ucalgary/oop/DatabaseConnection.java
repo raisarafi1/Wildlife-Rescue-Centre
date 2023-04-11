@@ -1,8 +1,12 @@
 package edu.ucalgary.oop;
 
-import javax.xml.crypto.Data;
+import org.w3c.dom.ls.LSOutput;
+
+import java.io.*;
 import java.sql.*;
 import java.util.*;
+import java.time.LocalDate;
+import java.util.stream.Collectors;
 
 public class DatabaseConnection {
     private Connection dbConnect;
@@ -133,31 +137,218 @@ public class DatabaseConnection {
 
         database.createConnection();
 
-        HashMap<Integer, Treatments> allTreatments = database.retrieveTreatmentsInfo();
-//        System.out.println("Treatments Table: ");
-//        System.out.println(allTreatments.toString());
-//
-//        System.out.println();
+
+        int foxPrepTime = 5;
+        int foxFeedingTime = 5;
+
+        int raccoonFeedingTime = 5;
+
+        int coyotePrepTime = 10;
+        int coyoteFeedingTime = 5;
+
+        int porcupineFeedingTime = 5;
 
         HashMap<Integer, Tasks> allTasks = database.retrieveTasksInfo();
-//        System.out.println("Tasks Table: ");
-//        System.out.println(allTasks.toString());
-//
-//        System.out.println();
-
+        HashMap<Integer, Treatments> allTreatments = database.retrieveTreatmentsInfo();
         HashMap<Integer, Animal> allAnimals = database.retrieveAnimalInfo();
-//        System.out.println("Animal Table: ");
-//        System.out.println(allAnimals.toString());
+
+
+        int numOfFoxes = 0;
+        for (int i = 1; i <= allAnimals.size(); i++) {
+            if (allAnimals.get(i).getAnimalSpecies() == Species.FOX && !allAnimals.get(i).getAnimalNickname().contains(" and "))
+                numOfFoxes++;
+        }
+
+        int numOfCoyotes = 0;
+        for (int i = 1; i <= allAnimals.size(); i++) {
+            if (allAnimals.get(i).getAnimalSpecies() == Species.COYOTE && !allAnimals.get(i).getAnimalNickname().contains(" and "))
+                numOfCoyotes++;
+        }
+
+        int numofPorcupines = 0;
+        for (int i = 1; i <= allAnimals.size(); i++) {
+            if (allAnimals.get(i).getAnimalSpecies() == Species.PORCUPINE && !allAnimals.get(i).getAnimalNickname().contains(" and "))
+                numofPorcupines++;
+        }
+
+        int numOfRaccoons = 0;
+        for (int i = 1; i <= allAnimals.size(); i++) {
+            if (allAnimals.get(i).getAnimalSpecies() == Species.RACCOON && !allAnimals.get(i).getAnimalNickname().contains(" and "))
+                numOfRaccoons++;
+        }
+
+        int numOfBeavers = 0;
+        for (int i = 1; i <= allAnimals.size(); i++) {
+            if (allAnimals.get(i).getAnimalSpecies() == Species.BEAVER && !allAnimals.get(i).getAnimalNickname().contains(" and "))
+                numOfBeavers++;
+        }
+
+
+        // creating new treatmentIDs
+        int maxTreatmentID = allTreatments
+                .entrySet()
+                .stream()
+                .map(treatment -> treatment.getValue().getTreatmentID())
+                .max(Integer::compareTo)
+                .get();
+        int newTreatmentID = maxTreatmentID + 1;
+
+
+        // creating new taskIDs
+        int maxTaskID = allTasks
+                .entrySet()
+                .stream()
+                .map(treatment -> treatment.getValue().getTaskID())
+                .max(Integer::compareTo)
+                .get();
+        int newTaskID = maxTaskID + 1;
+        System.out.println(newTaskID);
+
+
+        // creating new animalIDs
+        int maxAnimalID = allAnimals
+                .entrySet()
+                .stream()
+                .map(treatment -> treatment.getValue().getAnimalID())
+                .max(Integer::compareTo)
+                .get();
+        int newAnimalID = maxAnimalID + 1;
+
+        // Adding extra animals
+
+        Animal allFoxes = new Animal(newAnimalID, "All foxes");
+        allAnimals.put(allFoxes.getAnimalID(), allFoxes);
+
+        newAnimalID++;
+        Animal allCoyotes = new Animal(newAnimalID, "All coyotes");
+        allAnimals.put(allCoyotes.getAnimalID(), allCoyotes);
+
+        System.out.println(allAnimals);
+
+        // Adding extra tasks
+        Tasks feedingPorcupines = new Tasks(newTaskID, "Feeding porcupines", 5, 3);
+        allTasks.put(feedingPorcupines.getTaskID(), feedingPorcupines);
+
+        newTaskID++;
+        Tasks feedingFoxes = new Tasks(newTaskID, "Feeding foxes", 5+(5*numOfFoxes), 3);
+        allTasks.put(feedingFoxes.getTaskID(), feedingFoxes);
+
+        newTaskID++;
+        Tasks feedingCoyotes = new Tasks(newTaskID, "Feeding coyotes", 10+(5*numOfCoyotes), 3);
+        allTasks.put(feedingCoyotes.getTaskID(), feedingCoyotes);
+
+        newTaskID++;
+        Tasks feedingRaccoons = new Tasks(newTaskID, "Feeding raccoons", 5, 3);
+        allTasks.put(feedingRaccoons.getTaskID(), feedingRaccoons);
+
+        newTaskID++;
+        Tasks feedingBeavers = new Tasks(newTaskID, "Feeding beavers", 5, 3);
+        allTasks.put(feedingBeavers.getTaskID(), feedingBeavers);
+
+        newTaskID++;
+        Tasks cleaningPorcupineCage = new Tasks(newTaskID, "Cleaning porcupine cage", 10, 24);
+        allTasks.put(cleaningPorcupineCage.getTaskID(), cleaningPorcupineCage);
+
+        newTaskID++;
+        Tasks cleaningCoyoteCage = new Tasks(newTaskID, "Cleaning coyote cage", 5, 24);
+        allTasks.put(cleaningCoyoteCage.getTaskID(), cleaningCoyoteCage);
+
+        newTaskID++;
+        Tasks cleaningFoxCage = new Tasks(newTaskID, "Cleaning fox cage", 5, 24);
+        allTasks.put(cleaningFoxCage.getTaskID(), cleaningFoxCage);
+
+        newTaskID++;
+        Tasks cleaningRaccoonCage = new Tasks(newTaskID, "Cleaning raccoon cage", 5, 24);
+        allTasks.put(cleaningRaccoonCage.getTaskID(), cleaningRaccoonCage);
+
+        newTaskID++;
+        Tasks cleaningBeaverCage = new Tasks(newTaskID, "Cleaning beaver cage", 5, 24);
+        allTasks.put(cleaningBeaverCage.getTaskID(), cleaningBeaverCage);
+
+        System.out.println(allTasks);
+
+
+        // Adding extra treatments
+        // Treatment to feed the foxes
+        Treatments feedingFoxesTreatment = new Treatments(newTreatmentID, allFoxes.getAnimalID(), feedingFoxes.getTaskID(), 0);
+        allTreatments.put(feedingFoxesTreatment.getTreatmentID(), feedingFoxesTreatment);
+
+        newTreatmentID++;
+
+        // Treatment to feed the coyotes
+        Treatments feedingCoyotesTreatment = new Treatments(newTreatmentID, allCoyotes.getAnimalID(), feedingCoyotes.getTaskID(), 19);
+        allTreatments.put(feedingCoyotesTreatment.getTreatmentID(), feedingCoyotesTreatment);
+
+
+        // Treatments to feed the porcupines, raccoons, and beavers
+        for (int i = 1; i <= allAnimals.size(); i++) {
+            if (allAnimals.get(i).getAnimalSpecies() == Species.PORCUPINE) {
+                newTreatmentID++;
+                Treatments feedingPorcupinesTreatment = new Treatments(newTreatmentID, allAnimals.get(i).getAnimalID(), feedingPorcupines.getTaskID(), 19);
+                allTreatments.put(feedingPorcupinesTreatment.getTreatmentID(), feedingPorcupinesTreatment);
+            }
+            if (allAnimals.get(i).getAnimalSpecies() == Species.RACCOON) {
+                newTreatmentID++;
+                Treatments feedingRaccoonsTreatment = new Treatments(newTreatmentID, allAnimals.get(i).getAnimalID(), feedingRaccoons.getTaskID(), 19);
+                allTreatments.put(feedingRaccoonsTreatment.getTreatmentID(), feedingRaccoonsTreatment);
+            }
+            if (allAnimals.get(i).getAnimalSpecies() == Species.BEAVER) {
+                newTreatmentID++;
+                Treatments feedingBeaversTreatment = new Treatments(newTreatmentID, allAnimals.get(i).getAnimalID(), feedingBeavers.getTaskID(), 19);
+                allTreatments.put(feedingBeaversTreatment.getTreatmentID(), feedingBeaversTreatment);
+            }
+        }
+
+        // Treatments to clean the cages
+        for (int i = 1; i <= allAnimals.size(); i++) {
+            if (allAnimals.get(i).getAnimalSpecies() == Species.PORCUPINE) {
+                newTreatmentID++;
+                Treatments cleaningPorcupinesTreatment = new Treatments(newTreatmentID, allAnimals.get(i).getAnimalID(), cleaningPorcupineCage.getTaskID(), 0);
+                allTreatments.put(cleaningPorcupinesTreatment.getTreatmentID(), cleaningPorcupinesTreatment);
+            }
+            if (allAnimals.get(i).getAnimalSpecies() == Species.COYOTE) {
+                newTreatmentID++;
+                Treatments cleaningCoyotesTreatment = new Treatments(newTreatmentID, allAnimals.get(i).getAnimalID(), cleaningCoyoteCage.getTaskID(), 0);
+                allTreatments.put(cleaningCoyotesTreatment.getTreatmentID(), cleaningCoyotesTreatment);
+            }
+            if (allAnimals.get(i).getAnimalSpecies() == Species.FOX) {
+                newTreatmentID++;
+                Treatments cleaningFoxesTreatment = new Treatments(newTreatmentID, allAnimals.get(i).getAnimalID(), cleaningFoxCage.getTaskID(), 0);
+                allTreatments.put(cleaningFoxesTreatment.getTreatmentID(), cleaningFoxesTreatment);
+            }
+            if (allAnimals.get(i).getAnimalSpecies() == Species.RACCOON) {
+                newTreatmentID++;
+                Treatments cleaningRaccoonsTreatment = new Treatments(newTreatmentID, allAnimals.get(i).getAnimalID(), cleaningRaccoonCage.getTaskID(), 0);
+                allTreatments.put(cleaningRaccoonsTreatment.getTreatmentID(), cleaningRaccoonsTreatment);
+            }
+            if (allAnimals.get(i).getAnimalSpecies() == Species.BEAVER) {
+                newTreatmentID++;
+                Treatments cleaningBeaversTreatment = new Treatments(newTreatmentID, allAnimals.get(i).getAnimalID(), cleaningBeaverCage.getTaskID(), 0);
+                allTreatments.put(cleaningBeaversTreatment.getTreatmentID(), cleaningBeaversTreatment);
+            }
+
+        }
+        System.out.println(allTreatments);
+
 
         Scheduler.schedule(allTreatments, allTasks, allAnimals);
 
-        // feeding and cleaning methods are called
-//        Animal.nocturnalFeeding(allAnimals);
-//        Animal.diurnalFeeding(allAnimals);
-//        Animal.crepuscularFeeding(allAnimals);
-//        Animal.cageCleaning(allAnimals);
 
         database.close();
+
+        LocalDate today = LocalDate.now();
+        StringBuilder data = Scheduler.getData();
+
+        try {
+            FileWriter file = new FileWriter("schedule.txt");  // Create a FileWriter object
+            file.write("Schedule for " + today);   // Write to the file
+            file.write(String.valueOf(data));
+            file.close();   // Close the file
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();   // Print the stack trace if an error occurs
+        }
     }
 
 }
