@@ -8,10 +8,21 @@ public class Tasks {
     private int feedingDuration;
     private int prepDuration;
 
-
+    /**
+     *
+     * @param taskID
+     * @param description
+     * @param duration
+     * @param maxWindow
+     * @throws IllegalArgumentException
+     */
     public Tasks(int taskID, String description, int duration, int maxWindow) throws IllegalArgumentException {
         if(duration < 5 || duration > 60) {
             throw new IllegalArgumentException("The duration is either too short or too long to be completed within 60 minutes");
+        }
+        
+        if(maxWindow < 1 || maxWindow > 6) {
+            throw new IllegalArgumentException("The max window does not seem reasonable for task");
         }
 
         this.taskID = taskID;
@@ -19,6 +30,7 @@ public class Tasks {
         this.duration = duration;
         this.maxWindow = maxWindow;
     }
+
 
     public Tasks() {
 

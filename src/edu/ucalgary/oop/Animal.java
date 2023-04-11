@@ -16,15 +16,13 @@ public class Animal {
      * @param animalSpecies
      * @throws IllegalArgumentException
      */
-    public Animal(int animalID, String animalNickname, Species animalSpecies) throws IllegalArgumentException{
-        /*
+    public Animal(int animalID, String animalNickname, Species animalSpecies) throws IllegalArgumentException, NotSpeciesException {
          try {
             String species = animalSpecies.toString();
             Species.valueOf(species);
         } catch(IllegalArgumentException e) {
-            throw new NotSpeciesException("");
-        }
-         */
+             throw new NotSpeciesException("Invalid species, must be one of..");
+         }
         this.animalID = animalID;
         this.animalNickname = animalNickname;
         this.animalSpecies = animalSpecies;
