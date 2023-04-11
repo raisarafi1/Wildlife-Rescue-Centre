@@ -5,9 +5,8 @@ import java.util.*;
 
 public class Testing {
     @Test
-    /*
-     The SpeciesTest will check and see if the animal that is being taken care
-     is part of the Enumeration class.
+    /**
+     * Tests whether code will throw an exception when given an invalid Animal argument
      */
     public void SpeciesExceptionTest() {
         boolean passed = false;
@@ -23,7 +22,7 @@ public class Testing {
 
     @Test
     /*
-     * Valid Species test
+     * Ens
      */
     public void validSpeciesTest() {
         boolean passed = true;
