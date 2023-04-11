@@ -83,8 +83,6 @@ public class Scheduler {
             currentHour++;
             System.out.println();
         }
-<<<<<<< HEAD
-=======
     }
 
     public static void nocturnalFeeding(HashMap<Integer, Animal> animals) {
@@ -202,7 +200,6 @@ public class Scheduler {
         }
         System.out.println(coyoteFeeding);
         System.out.println(porcupineFeeding);
->>>>>>> 98aedc034aa71a1930d3f0d815e5b66527a0fd4e
 
     }
     public static StringBuilder getData() {
