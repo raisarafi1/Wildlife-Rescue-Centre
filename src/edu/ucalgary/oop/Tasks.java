@@ -5,8 +5,6 @@ public class Tasks {
     private String description;
     private int duration;
     private int maxWindow;
-    private int feedingDuration;
-    private int prepDuration;
 
 
     public Tasks(int taskID, String description, int duration, int maxWindow) throws IllegalArgumentException {

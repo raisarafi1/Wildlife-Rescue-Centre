@@ -75,31 +75,4 @@ public class Animal {
                 '}';
     }
 
-    /**
-     * The following method iterates through the animal's hashmap and depending on the type of animal,
-     * it will assign a cleaning time
-     * @param animals
-     */
-    public static void cageCleaning(HashMap<Integer, Animal> animals) {
-        for (int i = 1; i <= animals.size(); i++) {
-            if (animals.get(i).animalSpecies == Species.FOX) {
-                int foxCleaning = 5;
-                System.out.println("it takes " + foxCleaning + " minutes to clean the " + animals.get(i).animalSpecies +  " cage");
-            } else if (animals.get(i).animalSpecies == Species.RACCOON) {
-                int raccoonCleaning = 5;
-                System.out.println("it takes " + raccoonCleaning + " minutes to clean the " + animals.get(i).animalSpecies +  " cage");
-            } else if (animals.get(i).animalSpecies == Species.BEAVER) {
-                int beaverCleaning = 5;
-                System.out.println("it takes " + beaverCleaning + " minutes to clean the " + animals.get(i).animalSpecies +  " cage");
-            } else if (animals.get(i).animalSpecies == Species.COYOTE) {
-                int coyoteCleaning = 5;
-                System.out.println("it takes " + coyoteCleaning + " minutes to clean the " + animals.get(i).animalSpecies +  " cage");
-            } else if (animals.get(i).animalSpecies == Species.PORCUPINE) {
-                int porcupineCleaning = 10;
-                System.out.println("it takes " + porcupineCleaning + " minutes to clean the " + animals.get(i).animalSpecies +  " cage");
-
-            }
-        }
-    }
-
 }

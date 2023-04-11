@@ -1,10 +1,19 @@
+/**
+ @authors Raisa Rafi, Rida Khan, Mohamed Ebdalla, Joshua Debele
+ @version 7.8
+ @since 1.0
+ */
+
 package edu.ucalgary.oop;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.io.*;
 
 
+/**
+ * The Scheduler class has only two methods. One of the methods is the schedule method which takes in the three
+ * hashmaps of information and uses
+ */
 public class Scheduler {
 
     private static StringBuilder scheduleString;
@@ -53,6 +62,8 @@ public class Scheduler {
                 if (currentHour > startHour + maxWindow) {
                     scheduleString.append(" [+ backup volunteer]");
                     scheduleString.append("\n");
+                    // calls gui
+                    // second gui
                     System.out.println("Overdue!"); // TODO handle the overdue. Impossible? or Call for back up?
                     runningTreatmentTodosIDs.removeFirstOccurrence(treatmentIDSortedByMaxWindow.get(i));
                     continue;
