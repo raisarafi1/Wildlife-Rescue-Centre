@@ -26,7 +26,7 @@ public class Testing {
      */
     public void validSpeciesTest() {
         boolean passed = true;
-        try {  
+        try {
             Animal animal = new Animal(2, "The Speeder", Species.FOX);
         }
         catch(IllegalArgumentException e) {
@@ -36,7 +36,7 @@ public class Testing {
         assertTrue("This species is not an animal", passed);
     }
 
-    @Test 
+    @Test
     /*
      */
     public void failedDurationTest() {
@@ -63,7 +63,7 @@ public class Testing {
 
     @Test
     /*
-     * 
+     *
      */
     public void passedDurationTest() {
         boolean passed = true;
@@ -74,7 +74,7 @@ public class Testing {
             passed = false;
         }catch(Exception e) {};
         assertTrue("The Tasks class threw an IllegalArgumentException when given a valid duration", passed);
-        
+
         passed = true;
         testDuration = 60;
         try {
@@ -87,7 +87,7 @@ public class Testing {
 
     @Test
     /*
-     * 
+     *
      */
     /*This simply checks if the cage cleaning function is working accordingly */
     public void checkCageCleaningTest() {
@@ -126,7 +126,7 @@ public class Testing {
 
     @Test
     /*
-     * 
+     *
      */
     public void diurnalFeedingTest() {
         //
@@ -149,7 +149,7 @@ public class Testing {
 
     @Test
     /*
-     * 
+     *
      */
     public void crepuscularFeedingTest() {
         //

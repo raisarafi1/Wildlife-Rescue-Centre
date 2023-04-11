@@ -1,12 +1,9 @@
 package edu.ucalgary.oop;
 
-import org.w3c.dom.ls.LSOutput;
-
 import java.io.*;
 import java.sql.*;
 import java.util.*;
 import java.time.LocalDate;
-import java.util.stream.Collectors;
 
 public class DatabaseConnection {
     private Connection dbConnect;
@@ -14,13 +11,16 @@ public class DatabaseConnection {
 
     /**
      * Creates a connection to the treatments database
+     *
+     * @return
      */
-    public void createConnection() {
+    public Connection createConnection() {
         try {
             dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/ewr", "oop", "password");
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     /**
@@ -352,4 +352,3 @@ public class DatabaseConnection {
     }
 
 }
-
