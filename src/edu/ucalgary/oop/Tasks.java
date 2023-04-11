@@ -13,6 +13,10 @@ public class Tasks {
         if(duration < 5 || duration > 60) {
             throw new IllegalArgumentException("The duration is either too short or too long to be completed within 60 minutes");
         }
+        
+        if(maxWindow < 1 || maxWindow > 6) {
+            throw new IllegalArgumentException("The max window does not seem reasonable for task");
+        }
 
         this.taskID = taskID;
         this.description = description;
