@@ -8,6 +8,14 @@ public class Animal {
     private String animalNickname;
     private Species animalSpecies;
 
+
+    /**
+     * Creates an animal class that assigns a unique id, nickname, and species to each animal
+     * @param animalID
+     * @param animalNickname
+     * @param animalSpecies
+     * @throws IllegalArgumentException
+     */
     public Animal(int animalID, String animalNickname, Species animalSpecies) throws IllegalArgumentException{
         /*
          try {
@@ -50,6 +58,9 @@ public class Animal {
         this.animalSpecies = animalSpecies;
     }
 
+    /**
+     * The toString method generates a string that is properly formatted and includes all the relevant details about the animal
+     */
     @Override
     public String toString() {
         return "Animal{" +
@@ -59,6 +70,11 @@ public class Animal {
                 '}';
     }
 
+    /**
+     * The following method iterates through the animal's hashmap and depending on the type of animal,
+     * it will assign a cleaning time
+     * @param animals
+     */
     public static void cageCleaning(HashMap<Integer, Animal> animals) {
         for (int i = 1; i <= animals.size(); i++) {
             if (animals.get(i).animalSpecies == Species.FOX) {

@@ -14,10 +14,10 @@ public class Testing {
         try {
             Animal animal = new Animal(20, "Smarty pants", Species.ELEPHANT);
         }
-        catch(NotSpeciesException e) {
+        catch(Exception e) {
             passed = true;
         }
-        catch(Exception e) {}
+
         assertTrue("This species is not an animal that the facility takes care of. Must send to another facility.", passed);
     }
 

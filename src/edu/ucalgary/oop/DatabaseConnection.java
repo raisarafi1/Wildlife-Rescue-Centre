@@ -8,6 +8,9 @@ public class DatabaseConnection {
     private Connection dbConnect;
     private ResultSet results;
 
+    /**
+     * Creates a connection to the treatments database
+     */
     public void createConnection() {
         try {
             dbConnect = DriverManager.getConnection("jdbc:mysql://localhost/ewr", "oop", "password");
@@ -16,6 +19,11 @@ public class DatabaseConnection {
         }
     }
 
+    /**
+     * Executes an sql query that returns all the treatment tasks from the database
+     * and stores it into a hashmap called treatmentsList
+     * @return
+     */
     public HashMap<Integer, Treatments> retrieveTreatmentsInfo() {
         HashMap<Integer, Treatments> treatmentsList = new HashMap<>();
 
@@ -44,6 +52,11 @@ public class DatabaseConnection {
         return treatmentsList;
     }
 
+    /**
+     * Executes an sql query that returns all the animals from the database
+     * and stores it into a hashmap called animalList
+     * @return
+     */
     public HashMap<Integer, Animal> retrieveAnimalInfo() {
         HashMap<Integer, Animal> animalList = new HashMap<>();
 
@@ -70,6 +83,11 @@ public class DatabaseConnection {
         return animalList;
     }
 
+    /**
+     * Executes an sql query that returns all the animals from the database
+     * and stores it into a hashmap called animalList
+     * @return
+     */
     public HashMap<Integer, Tasks> retrieveTasksInfo() {
         HashMap<Integer, Tasks> tasksList = new HashMap<>();
 
@@ -98,6 +116,9 @@ public class DatabaseConnection {
         return tasksList;
     }
 
+    /**
+     * Trys to close the database connection
+     */
     public void close() {
         try {
             results.close();
