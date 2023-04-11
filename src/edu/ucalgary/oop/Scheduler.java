@@ -1,5 +1,6 @@
 package edu.ucalgary.oop;
 
+import java.awt.*;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.io.*;
@@ -52,6 +53,10 @@ public class Scheduler {
                 int maxWindow = tasks.get(treatments.get(treatmentIDSortedByMaxWindow.get(i)).getTaskID()).getMaxWindow() - 1;
                 if (currentHour > startHour + maxWindow) {
                     scheduleString.append(" [+ backup volunteer]");
+                    EventQueue.invokeLater(() -> {
+                        new BackupVolunteerGUI().setVisible(true);
+                    });
+
                     scheduleString.append("\n");
                     System.out.println("Overdue!"); // TODO handle the overdue. Impossible? or Call for back up?
                     runningTreatmentTodosIDs.removeFirstOccurrence(treatmentIDSortedByMaxWindow.get(i));

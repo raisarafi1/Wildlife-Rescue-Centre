@@ -24,18 +24,18 @@ public class GUIProject extends JFrame implements ActionListener, MouseListener{
     private int startHour;
 
 
-
-    public static void main(String[] args) {
-        DatabaseConnection database = new DatabaseConnection();
-        database.createConnection();
-        EventQueue.invokeLater(() -> {
-            new GUIProject().setVisible(true);
-        });
-    }
+//
+//    public static void main(String[] args) {
+//        DatabaseConnection database = new DatabaseConnection();
+//        database.createConnection();
+//        EventQueue.invokeLater(() -> {
+//            new GUIProject().setVisible(true);
+//        });
+//    }
 
     public GUIProject() {
         super("EWR Scheduler");
-        JOptionPane.showMessageDialog(this, "A backup volunteer is required, please press OK to call one");
+//        JOptionPane.showMessageDialog(this, "A backup volunteer is required, please press OK to call one");
         setupGUI();
         setSize(900, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -124,7 +124,7 @@ public class GUIProject extends JFrame implements ActionListener, MouseListener{
         // then ask them which one they would want to change and then allow them to enter the treatment
         //ID for whichever one the want to change, then it should update the start hour of that one, but
         //TODO validate will check if the ID even exists in the database at all
-        boolean allInputValid = false;
+        boolean allInputValid = true;
 
         //TODO LOOP THROUGH EACH OF THE TASKID'S IN HASHMAP BY USING THE GET METHOD
         // THEN CHECK WHETHER OR NOT IT IS IN THE TREATMENT ID TABLE AND IF IT IS THEN VALIDATE PASSES
@@ -161,14 +161,14 @@ public class GUIProject extends JFrame implements ActionListener, MouseListener{
 //        else if (inputID == ""){
 //            JOptionPane.showMessageDialog(this, "Please enter the new start hour");
 //        }
-//        else{
-            if (inputID > 0 && inputID < count) {
-                allInputValid = true;
-                JOptionPane.showMessageDialog(this, inputID + " is valid");
-            } else {
-                JOptionPane.showMessageDialog(this, inputID + " is not a valid treatmentID");
-            }
-//        }
+////        else{
+//            if (inputID > 0 && inputID < count) {
+//                allInputValid = true;
+//                JOptionPane.showMessageDialog(this, inputID + " is valid");
+//            } else {
+//                JOptionPane.showMessageDialog(this, inputID + " is not a valid treatmentID");
+//            }
+////        }
 
 
 

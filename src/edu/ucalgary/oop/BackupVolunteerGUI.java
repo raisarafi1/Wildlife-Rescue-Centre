@@ -14,12 +14,12 @@ public class BackupVolunteerGUI extends JFrame implements ActionListener, MouseL
     private JLabel errorMessage;
     private JLabel backupRequired;
 
-    public static void main(String[] args) {
-
-        EventQueue.invokeLater(() -> {
-            new BackupVolunteerGUI().setVisible(true);
-        });
-    }
+//    public static void main(String[] args) {
+//
+//        EventQueue.invokeLater(() -> {
+//            new BackupVolunteerGUI().setVisible(true);
+//        });
+//    }
 
     public BackupVolunteerGUI() {
         super("Backup Volunteer required");
@@ -40,7 +40,7 @@ public class BackupVolunteerGUI extends JFrame implements ActionListener, MouseL
         clientPanel.add(errorMessage);
         clientPanel.add(backupRequired);
         submitPanel.add(submitInfo);
-        submitInfo.addActionListener(e -> this.dispose());
+        submitInfo.addActionListener(e -> new GUIProject().setVisible(true));
 
         this.add(clientPanel, BorderLayout.CENTER);
         this.add(submitPanel, BorderLayout.SOUTH);

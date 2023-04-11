@@ -20,7 +20,7 @@ public class DatabaseConnection {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return dbConnect;
     }
 
     /**
